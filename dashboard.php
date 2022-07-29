@@ -13,10 +13,13 @@ include "koneksi.php";
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
     <?php
-    $sql = "SELECT * FROM rute WHERE rute.status = 'aktif' AND rute.id_user = '".$_SESSION['id']."'";
+    $sql = "SELECT * FROM rute WHERE status = 'aktif' AND id_user = '".$_SESSION['id']."'";
     $result = mysqli_query($koneksi,$sql) or die(mysqli_error($koneksi));
-    while ($row1 = mysqli_fetch_array($result)) {
-      $rute1 = $row1['detail_rute'];
+    $row1   = mysqli_fetch_array($result);
+    if ($row1 == "" || $row1 == null) {
+        $rute1 = "Terimakasih sudah berpatroli";
+    } else {
+        $rute1 = $row1['detail_rute'];
     }
     if($_SESSION['level_user']=='satpam'){?>
     
@@ -33,7 +36,12 @@ include "koneksi.php";
             <?php if ($_SESSION['level_user']=='kadiv'){ ?>
                 <!-- Illustrations -->
                 <div class="card shadow mb-4">
-                    
+                    <div class="card-header">
+                        Peta
+                    </div>
+                    <div class="card-body">
+                    <img src="img/peta.jpeg" width="100%" alt="Peta">
+                    </div>
                 </div>
             <?php }else{ ?>
                 <form action="proses_scan.php" method="GET">

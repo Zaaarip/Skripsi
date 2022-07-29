@@ -62,27 +62,9 @@ include ("koneksi.php");
             $sort='asc';
         }
     }
-
-                    // Attempt select query execution
-    $sql = "SELECT * FROM zona";
-    $count_pages = "SELECT * FROM zona";
-
-
-    if(!empty($_GET['search'])) {
-        $search = ($_GET['search']);
-        $sql = "SELECT * FROM zona
-        WHERE CONCAT_WS (nama_zona)
-        LIKE '%$search%'
-        ORDER BY $order $sort
-        LIMIT $offset, $no_of_records_per_page";
-        $count_pages = "SELECT * FROM zona
-        WHERE CONCAT_WS (nama_zona)
-        LIKE '%$search%'
-        ORDER BY $order $sort";
-    }
-    else {
-        $search = "";
-    }
+        // Attempt select query execution
+        $sql = "SELECT * FROM zona";
+        $count_pages = "SELECT * FROM zona";
 
     if($result = mysqli_query($link, $sql)){
         if(mysqli_num_rows($result) > 0){
