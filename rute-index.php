@@ -12,7 +12,7 @@ include ("koneksi.php");
       <div class="card-body">
         <div class="page-header clearfix">
             <a href="rute-create.php" class="btn btn-success float-right">Add New Record</a>
-            <a href="rute-index.php?id_zona=<?=$_GET['id_zona']?>" class="btn btn-info float-right mr-2">Reset View</a>
+            <a href="rute-index.php?id_zona=<?php echo $_GET['id_zona']; ?>" class="btn btn-info float-right mr-2">Reset View</a>
         </div>
 
         <?php
