@@ -9,9 +9,11 @@ require_once "helpers.php";
 
 $idRute       = $_GET['rute'];
 $idCheckPoint = $_GET['checkpoint'];
-$queryLoadImg = "SELECT rute_details.id_rute, rute_details.id_checkpoint, checkpoint.nama_checkpoint FROM rute_details ".
+$idUser       = $_GET['user'];
+$queryLoadImg = "SELECT rute_details.*, checkpoint.nama_checkpoint FROM rute_details ".
                 "JOIN checkpoint ON rute_details.id_checkpoint = checkpoint.id_checkpoint ".
-                "WHERE rute_details.id_rute = '".$idRute."' AND rute_details.id_checkpoint = '".$idCheckPoint."' LIMIT 1";
+                "WHERE rute_details.id_rute = '".$idRute."' AND rute_details.id_user = '".$idUser."'".
+                " AND rute_details.id_checkpoint = '".$idCheckPoint."' LIMIT 1";
 $rQueryLoadImg = mysqli_query($link, $queryLoadImg);
 $hQueryLoadImg = mysqli_fetch_array($rQueryLoadImg);
 ?>

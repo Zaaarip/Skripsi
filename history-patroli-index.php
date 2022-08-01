@@ -109,7 +109,7 @@ include ("koneksi.php");
             echo "<td>" . htmlspecialchars($row['detail_rute']) . "</td>";
             echo "<td>" . htmlspecialchars($row['nama_checkpoint']) . " (".$row['id_checkpoint'].")" . "</td>";
             echo "<td>" . htmlspecialchars($row['waktu']) . "</td>";
-            echo "<td><a href='history-patroli-image.php?rute=".$row['id_rute']."&checkpoint=".$row['id_checkpoint']."' target='_blank'><i class='far fa-eye'></i></a></td>";
+            echo "<td><a href='history-patroli-image.php?rute=".$row['id_rute']."&checkpoint=".$row['id_checkpoint']."&user=".$row['id_user']."'><i class='far fa-eye'></i></a></td>";
             echo "</tr>";
         }
         echo "</tbody>";
