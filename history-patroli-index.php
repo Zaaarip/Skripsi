@@ -97,13 +97,19 @@ include ("koneksi.php");
          echo "<th>Nama rute</th>";
          echo "<th>Nama checkpoint</th>";
          echo "<th>waktu</th>";
+         echo "<th>action</th>";
 
          echo "</tr>";
          echo "</thead>";
          echo "<tbody>";
          while($row = mysqli_fetch_array($result)){
             echo "<tr>";
-            echo "<td>" . htmlspecialchars($row['id_history']) . "</td>";echo "<td>" . htmlspecialchars($row['nama_user']) . "</td>";echo "<td>" . htmlspecialchars($row['detail_rute']) . "</td>";echo "<td>" . htmlspecialchars($row['nama_checkpoint']) . "</td>";echo "<td>" . htmlspecialchars($row['waktu']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['id_history']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['nama_user']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['detail_rute']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['nama_checkpoint']) . " (".$row['id_checkpoint'].")" . "</td>";
+            echo "<td>" . htmlspecialchars($row['waktu']) . "</td>";
+            echo "<td><a href='history-patroli-image.php?rute=".$row['id_rute']."&checkpoint=".$row['id_checkpoint']."&user=".$row['id_user']."'><i class='far fa-eye'></i></a></td>";
             echo "</tr>";
         }
         echo "</tbody>";

@@ -37,10 +37,10 @@ $hGetZona = mysqli_fetch_assoc($rGetZona);
                     <div class="form-group">
                         <label>Input gambar</label>
                         <input type="hidden" name="rute_detail_id" value="<?php echo $ruteDetailId; ?>" >
-                        <input type="file" name="nama_gambar" maxlength="100" class="form-control">
+                        <input type="file" name="gambar" maxlength="100" class="form-control">
                         <textarea name="caption" class="form-control" cols="30" rows="2" placeholder="Isi dengan berita kejanggalan"></textarea>
                         <a href="dashboard.php" class="btn btn-secondary">Kembali</a>
-                        <input type="submit" class="btn btn-primary float-right" value="Submit">
+                        <input name="upload" type="submit" class="btn btn-primary float-right">
                     </div>
                 </form>
             </div>
@@ -115,7 +115,7 @@ $hGetZona = mysqli_fetch_assoc($rGetZona);
                 echo "<thead>";
                 echo "<tr>";
                 echo "<th><a href=?search=$search&sort=&order=id_history_image&sort=$sort>id</th>";
-                echo "<th><a href=?search=$search&sort=&order=id_history_patroli&sort=$sort>id_history_patroli</th>";
+                echo "<th><a href=?search=$search&sort=&order=rute_detail_id&sort=$sort>rute_detail_id</th>";
                 echo "<th><a href=?search=$search&sort=&order=nama_gambar&sort=$sort>nama_gambar</th>";
                 echo "<th><a href=?search=$search&sort=&order=caption&sort=$sort>caption</th>";
                 echo "<th>Action</th>";
@@ -131,13 +131,11 @@ $hGetZona = mysqli_fetch_assoc($rGetZona);
                     while($row = mysqli_fetch_array($result)){
                         echo "<tr>";
                         echo "<td>" . htmlspecialchars($row['id_history_image']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['id_history_patroli']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['rute_detail_id']) . "</td>";
                         echo "<td><a href='img-patroli/" . htmlspecialchars($row['nama_gambar']) . "' target='_blank'> Lihat Gambar </a></td>";
                         echo "<td>" . htmlspecialchars($row['caption']) . "</td>";
                         echo "<td>";
-                        echo "<a href='checkpoint-index.php?id_zona=". $row['id_zona'] ."' title='View Record' data-toggle='tooltip'><i class='far fa-eye'></i></a>";
-                        echo "<a href='zona-update.php?id_zona=". $row['id_zona'] ."' title='Update Record' data-toggle='tooltip'><i class='far fa-edit'></i></a>";
-                        echo "<a href='zona-delete.php?id_zona=". $row['id_zona'] ."' title='Delete Record' data-toggle='tooltip'><i class='far fa-trash-alt'></i></a>";
+                        echo "<a href='img-patroli/". $row['gambar'] ."' title='".$row['caption']."' target='_blank' data-toggle='tooltip'><i class='far fa-eye'></i></a>";
                         echo "</td>";
                         echo "</tr>";
                     }
