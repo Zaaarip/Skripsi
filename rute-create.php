@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ("koneksi.php");
 // Include config file
 require_once "config.php";
@@ -56,19 +56,19 @@ while($row = mysqli_fetch_array($result)){
 
     $dsn = "mysql:host=$db_server;dbname=$db_name;charset=utf8mb4";
     $options = [
-          PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements
-          PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, //turn on errors in the form of exceptions
-          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //make the default fetch be an associative array
-      ];
-      try {
-          $pdo = new PDO($dsn, $db_user, $db_password, $options);
-      } catch (Exception $e) {
-          error_log($e->getMessage());
-          exit('Something weird happened'); //something a user can understand
-      }
+        PDO::ATTR_EMULATE_PREPARES   => false, // turn off emulation mode for "real" prepared statements
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, //turn on errors in the form of exceptions
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //make the default fetch be an associative array
+    ];
+    try {
+        $pdo = new PDO($dsn, $db_user, $db_password, $options);
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+        exit('Something weird happened'); //something a user can understand
+    }
 
-      $vars = parse_columns('rute', $_POST);
-      $stmt = $pdo->prepare("INSERT INTO rute (detail_rute,id_user,status) VALUES (?,?,'aktif')");
+    $vars = parse_columns('rute', $_POST);
+    $stmt = $pdo->prepare("INSERT INTO rute (detail_rute,id_user,status) VALUES (?,?,'aktif')");
 
     $sql3 = "UPDATE `rute` SET `status` = 'selesai' WHERE `rute`.`id_user` = '".$row['id_user']."' AND status = 'aktif';";
     $result3 = mysqli_query($link,$sql3);
@@ -89,8 +89,8 @@ while($row = mysqli_fetch_array($result)){
     } else{
         echo "Something went wrong. Please try again later.";
     }
-  }
-      header("location: rute-index.php");
+}
+header("location: rute-index.php");
 
 
 ?>
